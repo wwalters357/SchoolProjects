@@ -1,0 +1,33 @@
+#include <iostream>
+#include <sstream> 
+#include <cmath>
+
+using namespace std;
+
+int main(){
+    int cases = 0;
+    int min = 0;
+    cin >> cases;
+    for(int k = 0; k < cases; k++){
+        int rel = 0;
+        cin >> rel;
+        int st_nums[rel];
+        int min_sum[rel];
+        for(int i = 0; i < rel; i++){
+            cin >> st_nums[i]; 
+            min_sum[i] = 0;
+        }
+        for(int i = 0; i < rel; i++){
+            for(int j = 0; j < rel; j++){
+                min_sum[i] += abs(st_nums[i] - st_nums[j]);
+            }
+            min = min_sum[0];
+            for(int i = 1; i < rel; i++){
+                if(min > min_sum[i])
+                    min = min_sum[i];
+            }
+        }
+        cout << min << "\n";
+    }
+    return 0;
+}

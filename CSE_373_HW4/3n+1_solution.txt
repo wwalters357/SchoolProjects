@@ -1,0 +1,45 @@
+/******************************************************************************
+William Walters
+*******************************************************************************/
+
+#include <stdio.h>
+
+int cyclelength(int n){
+    if(n == 1)
+        return 1;
+    if(n % 2 == 1)
+        return cyclelength((3*n+1) >> 1) + 2;
+    else
+        return cyclelength(n >> 1) + 1;
+}
+
+int main()
+{
+    int i, j;
+    
+    while(scanf("%d %d", &i, &j) != EOF){
+        int temp1 = i;
+        int temp2 = j;
+        if(i > j){
+            int temp = i; 
+            i = j;
+            j = temp;
+        }
+        int max = 0;
+        int length;
+        
+        while(i <= j){
+            length = cyclelength(i);
+            if(length > max)
+                max= length;
+            i++;
+        }
+        
+        printf("%d %d %d\n", temp1, temp2, max);
+    }
+
+    return 0;
+}
+
+
+
